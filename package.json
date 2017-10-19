@@ -1,6 +1,6 @@
 {
   "name": "allex_parsetocsvlib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AllexJS lib for parsing files into csv files",
   "main": "index.js",
   "scripts": {

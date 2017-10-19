@@ -90,6 +90,10 @@ function createTask (execlib, dirlib, filelib) {
     this.dirdb.read(Path.basename(path), {parsermodulename: this.parsermodulename},d);
   };
   Parse2CsvTask.prototype.onFileReader = function (reader) {
+    //need to wait a bit for all the records to be there
+    lib.runNext(this.makeCsv.bind(this,reader), 100);
+  };
+  Parse2CsvTask.prototype.makeCsv = function (reader) {
     var csv = new CsvFile (this.outfilepath);
     if (this.includeheaders) {
       csv.includeHeaders = true;
