@@ -1,0 +1,31 @@
+{
+  "name": "allex_parsetocsvlib",
+  "version": "1.0.0",
+  "description": "AllexJS lib for parsing files into csv files",
+  "main": "index.js",
+  "scripts": {
+    "test": "allex-mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allex-libs/parsetocsv.git"
+  },
+  "dependencies": {
+    "allex_nodehelpersserverruntimelib": "1.x",
+    "allex_fsutilsserverruntimelib": "1.x"
+  },
+  "keywords": [
+    "ecosystem:AllexJS",
+    "parse",
+    "into",
+    "csv",
+    "file",
+    "lib"
+  ],
+  "author": "Andrija Petrovic <andrija.hers@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allex-libs/parsetocsv/issues"
+  },
+  "homepage": "https://github.com/allex-libs/parsetocsv#readme"
+}
