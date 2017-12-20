@@ -22,7 +22,7 @@ function createTask (execlib, dirlib, filelib) {
     this.cb = prophash.cb;
     this.errorcb = prophash.errorcb;
     this.includeheaders = prophash.includeheaders;
-
+    this.append = prophash.append;
     this.dataservicesink = null;
     this.datausersink = null;
     this.dirdb = null;
@@ -43,6 +43,9 @@ function createTask (execlib, dirlib, filelib) {
       this.dataservicesink.destroy();
     }
     this.dataservicesink = null;
+    this.append = null;
+    this.includeheaders = null;
+    this.errorcb = null;
     this.cb = null;
     this.metamap = null;
     this.datamodulename = null;
@@ -101,8 +104,16 @@ function createTask (execlib, dirlib, filelib) {
     csv.streamInFromDataSink(this.datausersink, {}).then(this.onCsvMade.bind(this));
   };
   Parse2CsvTask.prototype.onCsvMade = function (result) {
+    var filepath = FsUtils.surePath(this.outfilepath);
     if (this.outfilepath) {
-      Fs.writeFile(FsUtils.surePath(this.outfilepath), result, this.onCsvWritten.bind(this));
+      if (this.append) {
+        if (result && result.length>0 && FsUtils.fileSize(filepath)>0) {
+          result = '\n'+result;
+        }
+        Fs.appendFile(filepath, result, this.onCsvWritten.bind(this));
+      } else {
+        Fs.writeFile(filepath, result, this.onCsvWritten.bind(this));
+      }
       return;
     }
     this.success(result);
