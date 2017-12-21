@@ -19,6 +19,7 @@ function createTask (execlib, dirlib, filelib) {
     this.parsermodulename = prophash.parsermodulename;
     this.datamodulename = prophash.datamodulename;
     this.metamap = prophash.metamap;
+    this.propertyhash = prophash.propertyhash;
     this.cb = prophash.cb;
     this.errorcb = prophash.errorcb;
     this.includeheaders = prophash.includeheaders;
@@ -47,6 +48,7 @@ function createTask (execlib, dirlib, filelib) {
     this.includeheaders = null;
     this.errorcb = null;
     this.cb = null;
+    this.propertyhash = null;
     this.metamap = null;
     this.datamodulename = null;
     this.parsermodulename = null;
@@ -90,7 +92,7 @@ function createTask (execlib, dirlib, filelib) {
       this.onFileReaderFailed.bind(this),
       this.onRecord.bind(this)
     );
-    this.dirdb.read(Path.basename(path), {parsermodulename: this.parsermodulename},d);
+    this.dirdb.read(Path.basename(path), {parsermodulename: this.parsermodulename, propertyhash: this.propertyhash},d);
   };
   Parse2CsvTask.prototype.onFileReader = function (reader) {
     //need to wait a bit for all the records to be there
